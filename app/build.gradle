@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+//butterknife step 2
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    compileSdkVersion 24
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.zz.kls"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //lambda表达式 step 3
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include:'*.so',dir:'libs');
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+    //butterknife step 3
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    //gson
+    compile 'com.google.code.gson:gson:2.8.0'
+    //glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //nohttp
+    implementation 'com.yanzhenjie.nohttp:okhttp:1.1.8'
+    //Logger
+    compile 'com.orhanobut:logger:1.15'
+    //支持复杂布局的RecyclerView   用法详见url:https://github.com/llxdaxia/RecyclerView
+    compile 'com.github.adzcsx2:RecyclerView:4aff93b861'
+    //    compile 'cn.lemon:RefreshRecyclerView:1.1.9'
+    /////////////////////////////////////自定义库//////////////////////////////////////////////////
+    //EventBus
+    compile 'com.github.adzcsx2:EventBusL:ad5885dcf8'
+    //android 屏幕适配
+    compile 'com.github.adzcsx2:AndroidAutoLayout:27c326f8cf'
+    compile files('libs/BASE64.jar')
+}
